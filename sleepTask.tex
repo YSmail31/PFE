@@ -1,0 +1,26 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[french,onelanguage]{algorithm2e}
+\usepackage[french]{babel}
+\selectlanguage{french}
+\usepackage{amsmath}
+\begin{document}
+\begin{algorithm}[H]
+ \KwData{TaskSet $\Gamma$, Temps Minimum d'execution $C_{SleepMin}$}
+ \KwResult{Tache $\tau_{Sleep}$}
+ \Begin{
+ 	$\forall \tau_{i} \in \Gamma$\;
+	$T_{min} \longleftarrow Min \{ T_{i} \} $\;
+	\lIf{$\exists \tau_{i}$ $|$ $2T_{min} > T_{i}$}{
+	$T_{H} \longleftarrow T_{min}/2$\;
+	\Else{	$T_{H} \longleftarrow T_{min}$\;}}
+ 	$C_{Sleep}  \longleftarrow (1 - U_{\Gamma} ) * T_{H}$\;
+ 	$D_{Sleep}	\longleftarrow T_{H}$\;
+ 	\While{$\Gamma \cup tache(C_{Sleep},D_{Sleep},T_{H})$ $\neg ordonnançable \textbf{et} C_{Sleep} > C_{SleepMin}$}
+ 	{
+ 		$C_{Sleep} \longleftarrow C_{Sleep} - \Delta C$\;
+ 	}
+ 	$\tau_{Sleep} \longleftarrow tache(C_{Sleep},D_{Sleep},T_{H})$
+ }
+ \caption{Insertion Taches Endormissement}
+\end{algorithm}
+\end{document}
